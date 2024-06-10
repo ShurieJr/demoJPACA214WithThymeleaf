@@ -1,5 +1,6 @@
 package com.JPACA214.Customer;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,9 +29,12 @@ public class CustomerController {
 
     //requests
     @RequestMapping("/all")
-    public ModelAndView getAllCustomers() {
-        List<Customer> list= customerService.getAllCustomers();
-        return new ModelAndView("CustomerList","customer", list);
+    public String getAllCustomers(Model model ,@Param("keyword") String keyword) {
+        List<Customer> listCustomers = customerService.getAllCustomers(keyword);
+        model.addAttribute("listCustomers", listCustomers);
+        model.addAttribute("keyword", keyword);
+
+        return "CustomerList";
     }
 
 

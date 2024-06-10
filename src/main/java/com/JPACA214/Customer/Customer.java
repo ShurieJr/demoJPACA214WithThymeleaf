@@ -11,8 +11,7 @@ import lombok.*;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(nullable = false) //not null
     private String name;
 //    @Column(unique = true)

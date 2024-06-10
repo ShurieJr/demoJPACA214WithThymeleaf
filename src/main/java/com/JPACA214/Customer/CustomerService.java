@@ -1,6 +1,7 @@
 package com.JPACA214.Customer;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +17,9 @@ public class CustomerService {
     public Customer getCustomerById(int id) {
         return repository.findById(id).orElse(null);
     }
-    public List<Customer> getAllCustomers(){
+    public List<Customer> getAllCustomers(String keyword){
+        if( keyword != null )
+            return repository.search(keyword);
         return repository.findAll();
     }
 
